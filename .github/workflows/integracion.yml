@@ -1,1 +1,29 @@
-#Archivo de prueba
+name: Integración Java App
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build-and-deploy:
+    uses: danielgalvezpilco/tpl-job-cicd/.github/workflows/main.yml@main
+    with:
+      java_version: "11"
+      gradle_version: "6.9.4"
+      registry_name: "demo-registry"
+      azure_tenant_id: "demo-tenant"
+      azure_subscription_id: "demo-subscription"
+      resource_group: "demo-rg"
+      cluster_name: "demo-cluster"
+      profile: "integration"
+      cluster_namespace: "demo-namespace"
+      cluster_max_replica: "2"
+      cluster_min_replica: "1"
+    secrets:
+      GH_PACKAGES_USER: ${{ secrets.GH_PACKAGES_USER }}
+      GH_PACKAGES_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }}
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
