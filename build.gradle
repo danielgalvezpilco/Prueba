@@ -1,18 +1,19 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group 'com.ejemplo'
-version '1.0-SNAPSHOT'
+version '1.0'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation 'junit:junit:4.13.2'
+    // No hay dependencias externas en este ejemplo
 }
 
-test {
-    useJUnitPlatform()
+application {
+    mainClass = 'com.ejemplo.HolaMundo'
 }
